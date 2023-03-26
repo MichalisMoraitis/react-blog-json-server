@@ -39,14 +39,6 @@ const Blog = () => {
         }
     }
 
-    const setData = (blog) => {
-        // console.log(blog)
-        localStorage.setItem('ID', blog.id);
-        localStorage.setItem('title', blog.title);
-        localStorage.setItem('body', blog.body);
-        localStorage.setItem('author', blog.author);
-    }
-
     return(
         <div className="content">
             <div className="blog-details" >
@@ -60,7 +52,7 @@ const Blog = () => {
                         <div>
                             <h4>Written by { blog.author }</h4 >
                             <Link to={`/update/${blog.id}`}>
-                                <button className="update" onClick={()=>{setData(blog)}}>Update</button>
+                                <button className="update">Update</button>
                             </Link> 
                             <button className="delete" onClick={handleClick}>Delete</button>
                             </div>

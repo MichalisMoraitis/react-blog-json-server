@@ -34,10 +34,22 @@ const Update = () => {
   }
 
   useEffect(() => {
-    setTitle(localStorage.getItem('title'));
-    setBody(localStorage.getItem('body'));
-    setAuthor(localStorage.getItem('author'));
-}, [])
+      setIsLoading(true);
+      setError(null);
+
+      axios.get(`http://localhost:8000/blogs/${id}`)
+      .then((getData) => {
+          setTitle(getData.data.title);
+          setBody(getData.data.body);
+          setAuthor(getData.data.author);
+          setIsLoading(false);
+          setError(null);
+      })
+      .catch((error) => {
+          setIsLoading(false);
+          setError(error.message);
+      });
+    },[id])
 
   return (
     <div className="content">
